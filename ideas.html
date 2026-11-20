@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shiptivity: three ideas to grow daily active users</title>
+<style>
+  @page { size: A4; margin: 15mm 16mm 16mm; }
+  :root {
+    --ink: #0b0b0b; --ink-2: #52514e; --ink-3: #8a8984; --rule: #e6e5e1;
+    --surface: #fcfcfb; --panel: #f4f3f0; --blue: #2a78d6; --blue-soft: #e6effa;
+    --amber: #a86400; --amber-soft: #fbefd9;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: var(--ink); background: #fff;
+         font: 10pt/1.45 -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  h1 { font-size: 20pt; line-height: 1.15; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 13pt; margin: 18px 0 6px; padding-top: 10px; border-top: 2px solid var(--ink); }
+  h3 { font-size: 11.5pt; margin: 0 0 6px; }
+  p { margin: 0 0 7px; }
+  .meta { color: var(--ink-2); font-size: 9pt; margin-bottom: 12px; }
+  .lede { font-size: 11pt; margin: 10px 0 12px; }
+  figure { margin: 8px 0 12px; }
+  figure img { width: 100%; display: block; border: 1px solid var(--rule); }
+  figcaption { color: var(--ink-2); font-size: 8.5pt; margin-top: 4px; }
+  ol.findings { padding-left: 18px; margin: 6px 0 8px; }
+  ol.findings li { margin-bottom: 5px; }
+  .num { font-weight: 700; }
+  .idea { break-before: page; }
+  .idea-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .idea-head .tag { font-size: 8.5pt; font-weight: 700; color: #fff; background: var(--ink);
+                    padding: 2px 7px; border-radius: 3px; white-space: nowrap; }
+  .idea-head h3 { font-size: 14pt; margin: 0; }
+  .evidence { background: var(--panel); border-left: 3px solid var(--ink-3); padding: 7px 10px;
+              margin: 0 0 10px; font-size: 9.2pt; }
+  .evidence b { display: block; font-size: 8pt; text-transform: uppercase; letter-spacing: .06em;
+                color: var(--ink-2); margin-bottom: 2px; }
+  dl.spec { display: grid; grid-template-columns: 118px 1fr; gap: 6px 14px; margin: 0 0 10px; }
+  dl.spec dt { font-weight: 700; font-size: 9.2pt; }
+  dl.spec dd { margin: 0; }
+  .caveats { font-size: 9pt; color: var(--ink-2); }
+  .caveats li { margin-bottom: 3px; }
+  code { font: 8.8pt/1 Menlo, monospace; background: var(--panel); padding: 1px 3px; border-radius: 2px; }
+
+  /* Wireframes: deliberately rough, greyscale plus one accent. */
+  .wf-label { font-size: 8pt; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2);
+              margin: 4px 0 4px; font-weight: 700; }
+  .wf { display: flex; gap: 12px; align-items: flex-start; border: 1px dashed var(--ink-3);
+        border-radius: 6px; padding: 10px; background: var(--surface); font-size: 8.4pt; }
+  .wf .screen { border: 1.5px solid var(--ink-2); border-radius: 6px; background: #fff; flex: 1;
+                overflow: hidden; }
+  .wf .bar { background: var(--panel); border-bottom: 1px solid var(--rule); padding: 4px 8px;
+             font-weight: 700; color: var(--ink-2); display: flex; justify-content: space-between; }
+  .wf .body { padding: 7px 8px; }
+  .wf .lanes { display: flex; gap: 6px; }
+  .wf .lane { flex: 1; background: var(--panel); border-radius: 4px; padding: 5px; }
+  .wf .lane > b { display: block; font-size: 7.6pt; color: var(--ink-2); margin-bottom: 4px; }
+  .wf .card { background: #fff; border: 1px solid var(--ink-3); border-radius: 4px; padding: 4px 5px;
+              margin-bottom: 4px; }
+  .wf .card .sub { color: var(--ink-3); font-size: 7.4pt; }
+  .wf .badge { display: inline-block; font-size: 7.2pt; font-weight: 700; border-radius: 3px;
+               padding: 0 4px; margin-top: 2px; }
+  .wf .badge.stale { background: var(--amber-soft); color: var(--amber); }
+  .wf .badge.accent { background: var(--blue-soft); color: var(--blue); }
+  .wf .btn { display: inline-block; border: 1px solid var(--blue); color: var(--blue); border-radius: 3px;
+             padding: 0 5px; font-size: 7.4pt; font-weight: 700; margin-left: 4px; }
+  .wf .btn.solid { background: var(--blue); color: #fff; }
+  .wf .row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0;
+             border-bottom: 1px solid var(--rule); }
+  .wf .row:last-child { border-bottom: 0; }
+  .wf .avatar { display: inline-flex; width: 15px; height: 15px; border-radius: 50%; background: var(--ink-2);
+                color: #fff; font-size: 6.6pt; font-weight: 700; align-items: center; justify-content: center;
+                margin-right: 4px; vertical-align: middle; }
+  .wf .muted { color: var(--ink-3); }
+  .wf .field { border: 1px solid var(--ink-3); border-radius: 3px; padding: 2px 5px; color: var(--ink-3);
+               margin: 3px 0; }
+  .wf .steps { display: flex; gap: 4px; margin: 6px 0; }
+  .wf .steps span { flex: 1; text-align: center; border-radius: 3px; padding: 2px 0; font-size: 7.4pt;
+                    background: var(--panel); color: var(--ink-3); }
+  .wf .steps span.on { background: var(--blue); color: #fff; font-weight: 700; }
+  .wf .arrow { align-self: center; font-size: 16pt; color: var(--ink-3); flex: 0 0 auto; }
+</style>
+</head>
+<body>
+
+<h1>Shiptivity: three ideas to grow daily active users</h1>
+<div class="meta">Analysis of <code>shiptivity.db</code> (login history 3 Feb 2018 to 1 Feb 2019; card history from the
+Kanban launch on 2 Jun 2018). Every number here comes from a named query in <code>answer.sql</code>.</div>
+
+<p class="lede">The Kanban board coincided with a <b>3.5&times; jump in daily active users</b>. That jump came from a
+one-off wave of new users, though, and since then growth has stopped and usage is slowly slipping. The three ideas below
+target the three levers that are left: making each day's visit worth it, making visits social, and restarting signups.</p>
+
+<h2>What the data says</h2>
+<figure>
+  <img src="charts/dau_before_after.png" alt="Daily active users per day, Feb 2018 to Feb 2019, averaging 3.4 before the launch and 11.8 after">
+  <figcaption>Query <code>dau_before_after</code> (averages) and <code>dau_daily</code> (bars).</figcaption>
+</figure>
+
+<ol class="findings">
+  <li><span class="num">Daily active users rose from 3.4 to 11.8 a day</span> after the launch (averaged over every
+    calendar day, with days without logins counted as 0).</li>
+  <li><span class="num">The rise came from new users, not existing users coming more often.</span> 43 people joined in
+    June 2018, the launch month, against about 10 a month before. Users who joined after launch log in about as often as
+    earlier users once you allow for their shorter tenure: 0.93 vs 0.89 days a week (<code>user_cohorts</code>).</li>
+  <li><span class="num">Then growth stopped.</span> New users fell to 9 in July, 6 in August and 4 in total from September
+    to January (<code>signups_by_month</code>). With about 100 users and almost no newcomers, daily active users slipped
+    21%, from 12.9 in July to 10.2 in January. Monthly active users stayed at 72&ndash;84, so people are not leaving;
+    they come less often. <b>Stickiness</b> (average daily users &divide; that month's users) fell from 22.8% in May to
+    12.8% in January (<code>monthly_engagement</code>).</li>
+  <li><span class="num">Cards go stale.</span> A card waits 66 days on average before its first move. 38 of 200 cards
+    (19%) have never moved and are 117 days old on average (<code>card_wait_times</code>). After launch there is one
+    status change for every 12.5 logins, and no change at all on 132 of 245 days.</li>
+  <li><span class="num">Half of all status changes (149 of 286) happened in January 2019</span>, triple the rate per card
+    of any earlier month (<code>card_flow_by_month</code>). That could be real adoption or one person clearing a
+    backlog. We cannot tell, because <code>card_change_history</code> does not record who moved a card.</li>
+</ol>
+
+<figure>
+  <img src="charts/status_changes_by_card.png" alt="Status changes per card: 38 cards with none, 53 with one, 100 with two, 9 with three or more; and status changes per day since launch">
+  <figcaption>Query <code>cards_by_change_count</code> (left) and <code>status_changes_daily</code> (right). Moves are
+    mostly forward: 167 backlog &rarr; in progress, 103 in progress &rarr; complete, and only 16 backwards
+    (<code>status_transitions</code>).</figcaption>
+</figure>
+
+<h3>Caveats</h3>
+<ul class="caveats">
+  <li>Before/after is a correlation. There is no control group, and the June signup wave may have been driven by
+    marketing around the launch as much as by the feature itself.</li>
+  <li>Days are UTC calendar days. February 2018 starts on the 3rd and February 2019 has a single day, so those months'
+    averages are partial.</li>
+  <li>Card history has no user column, so card activity cannot be linked to the users who log in.</li>
+</ul>
+
+<!-- ============================================================== IDEA 1 -->
+<section class="idea">
+  <div class="idea-head"><span class="tag">Idea 1</span><h3>A daily &ldquo;needs you today&rdquo; digest of stale cards</h3></div>
+  <div class="evidence"><b>Evidence</b>Cards wait 66 days before their first move; 38 cards (19%) have never moved and
+    are 117 days old; on 132 of 245 days after launch nobody moved a card. The board is opened but not kept up to date.</div>
+  <dl class="spec">
+    <dt>Hypothesis</dt>
+    <dd>Shipments progress in the real world, but the board only changes when a manager remembers to update it. If
+      Shiptivity tells managers each morning which cards have gone stale, they will open the app to update them, and
+      come back on more days of the week.</dd>
+    <dt>Expected impact</dt>
+    <dd>Daily active users back to the July peak: from 10.2 to about 13 (+25%). That needs about 3 extra visits a day,
+      or roughly 4% of the ~80 monthly users clicking through on a given day, which is a modest rate for a personal,
+      actionable digest. Secondary: average days to first move down from 66 to under 30.</dd>
+    <dt>The feature</dt>
+    <dd>A card nobody has touched for 7 days gets a <i>Stale &middot; 23 days</i> badge on the board. Each morning an
+      email or push lists the user's stale cards and what moved yesterday. Every item deep-links to its card with
+      one-tap <i>Move to In progress</i> / <i>Complete</i>. Users pick the frequency and can snooze a card.</dd>
+    <dt>How we measure</dt>
+    <dd>Four-week A/B test by account: daily active users and stickiness (primary), digest click-through, days to first
+      move, share of cards stale.</dd>
+  </dl>
+  <div class="wf-label">Sketch</div>
+  <div class="wf">
+    <div class="screen">
+      <div class="bar"><span>Morning digest &middot; email</span><span class="muted">8:00</span></div>
+      <div class="body">
+        <p style="margin:0 0 4px"><b>3 cards need you today</b></p>
+        <div class="row"><span>Nolan LLC <span class="badge stale">Stale &middot; 23 days</span></span><span class="btn solid">Start</span></div>
+        <div class="row"><span>Boehm and Sons <span class="badge stale">Stale &middot; 41 days</span></span><span class="btn solid">Start</span></div>
+        <div class="row"><span>Thompson PLC <span class="muted">in progress 12 days</span></span><span class="btn">Complete</span></div>
+        <p class="muted" style="margin:5px 0 0">Yesterday: 2 cards moved by your team &middot; Snooze &middot; Settings</p>
+      </div>
+    </div>
+    <div class="arrow">&rarr;</div>
+    <div class="screen">
+      <div class="bar"><span>Board</span><span class="muted">opens on the card</span></div>
+      <div class="body lanes">
+        <div class="lane"><b>BACKLOG</b>
+          <div class="card" style="border-color:var(--blue);border-width:2px">Nolan LLC<br><span class="badge stale">Stale &middot; 23 days</span></div>
+          <div class="card">Boehm and Sons<br><span class="badge stale">Stale &middot; 41 days</span></div>
+        </div>
+        <div class="lane"><b>IN PROGRESS</b>
+          <div class="card">Thompson PLC<div class="sub">12 days</div></div>
+        </div>
+        <div class="lane"><b>COMPLETE</b>
+          <div class="card">Wiza LLC<div class="sub">done</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== IDEA 2 -->
+<section class="idea">
+  <div class="idea-head"><span class="tag">Idea 2</span><h3>Assign cards to teammates and notify them when work moves</h3></div>
+  <div class="evidence"><b>Evidence</b>Users stay but visit less often: monthly users held at 72&ndash;84 while stickiness
+    fell from 16.6% in June to 12.8% in January (22.8% in May, before launch). January's surge of 149 moves cannot be
+    tied to anyone, because the card history has no user column.</div>
+  <dl class="spec">
+    <dt>Hypothesis</dt>
+    <dd>Freight work is shared: when one person marks a client's shipment complete, someone else needs to invoice or
+      follow up. If each move reaches the teammates who depend on it, every move becomes a reason for someone else to open
+      the app, and visits per user go up.</dd>
+    <dt>Expected impact</dt>
+    <dd>Stickiness back from 12.8% to its pre-launch level of about 20% (March to May average). At ~80 monthly users that
+      means about 16 daily active users, up from 10.2 (+55%). Leading indicator: the share of sessions that start from a
+      notification.</dd>
+    <dt>The feature</dt>
+    <dd>Assign a card to a teammate (avatar on the card), follow any card, and get notified when an assigned or followed
+      card moves. An activity feed shows <i>who</i> moved <i>what</i>. Prerequisite: add <code>userID</code> to every
+      <code>card_change_history</code> row. That also lets us answer questions this analysis could not, such as who
+      drives January's activity.</dd>
+    <dt>How we measure</dt>
+    <dd>Stickiness and daily active users for accounts with 2+ users, notification-to-session rate, share of cards with an
+      assignee.</dd>
+  </dl>
+  <div class="wf-label">Sketch</div>
+  <div class="wf">
+    <div class="screen">
+      <div class="bar"><span>Card &middot; Wiza LLC</span><span class="muted">&times;</span></div>
+      <div class="body">
+        <div class="row"><span>Status</span><span><b>In progress</b> <span class="btn">Move to Complete</span></span></div>
+        <div class="row"><span>Assignee</span><span><span class="avatar">AK</span>Ana K. <span class="muted">change</span></span></div>
+        <div class="row"><span>Followers</span><span><span class="avatar">JN</span><span class="avatar">TP</span><span class="btn">+ Follow</span></span></div>
+        <div class="row"><span>Priority</span><span>2 of 5</span></div>
+      </div>
+    </div>
+    <div class="screen">
+      <div class="bar"><span>Activity</span><span class="badge accent">3 new</span></div>
+      <div class="body">
+        <div class="row"><span><span class="avatar">AK</span><b>Ana</b> moved <b>Wiza LLC</b> to Complete</span><span class="muted">2h</span></div>
+        <div class="row"><span><span class="avatar">TP</span><b>Tom</b> assigned you <b>Nolan LLC</b></span><span class="muted">5h</span></div>
+        <div class="row"><span><span class="avatar">JN</span><b>You</b> moved <b>Boehm and Sons</b> back to Backlog</span><span class="muted">1d</span></div>
+        <p class="muted" style="margin:5px 0 0">Push: &ldquo;Ana completed Wiza LLC, ready to invoice&rdquo;</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== IDEA 3 -->
+<section class="idea">
+  <div class="idea-head"><span class="tag">Idea 3</span><h3>Shareable shipment status links that bring in new users</h3></div>
+  <div class="evidence"><b>Evidence</b>The launch month brought 43 new users; since September there has been about one a
+    month, and the user base is flat at 100. Users who joined after launch are as active as earlier ones (0.93 active days
+    a week), so new users are worth having. The problem is that no new ones are arriving.</div>
+  <dl class="spec">
+    <dt>Hypothesis</dt>
+    <dd>Each card is a client whose shipment customers and carriers keep asking about. A read-only status link lets the
+      manager answer &ldquo;where is my shipment?&rdquo; in one click, and each link shows Shiptivity to other people in
+      logistics. Some of them will sign up. The same share sheet makes inviting a teammate a one-step action.</dd>
+    <dt>Expected impact</dt>
+    <dd>Signups back to the pre-launch rate of about 10 a month, up from 1. Post-launch users log in on 0.93 days a week,
+      so each one adds about 0.13 to daily active users. Ten a month adds about 1.3 daily users every month, roughly
+      +8 after six months. It also compounds with Ideas 1 and 2: public links give managers a reason to keep cards
+      current.</dd>
+    <dt>The feature</dt>
+    <dd><i>Share status</i> on any card creates a public link showing the client, the current lane, the last update and a
+      short timeline, with a footer: <i>Track your freight with Shiptivity</i>. The share sheet also has an
+      <i>Invite a teammate</i> field. Links can be revoked.</dd>
+    <dt>How we measure</dt>
+    <dd>Links shared per week, views per link, signups attributed to links (referral code), invite acceptance rate, and the
+      new users' active days per week against the 0.93 baseline.</dd>
+  </dl>
+  <div class="wf-label">Sketch</div>
+  <div class="wf">
+    <div class="screen">
+      <div class="bar"><span>Share &middot; Stark, White and Abbott</span><span class="muted">&times;</span></div>
+      <div class="body">
+        <p style="margin:0 0 3px"><b>Status link</b> <span class="muted">read-only, revocable</span></p>
+        <div class="field">shiptivity.app/s/7KQ2-stark</div>
+        <span class="btn solid">Copy link</span><span class="btn">Email client</span>
+        <p style="margin:8px 0 3px"><b>Invite a teammate</b></p>
+        <div class="field">name@company.com</div>
+        <span class="btn solid">Send invite</span>
+      </div>
+    </div>
+    <div class="arrow">&rarr;</div>
+    <div class="screen">
+      <div class="bar"><span>Public page</span><span class="muted">no login needed</span></div>
+      <div class="body">
+        <p style="margin:0 0 2px"><b>Stark, White and Abbott</b></p>
+        <p class="muted" style="margin:0">Updated 2 hours ago</p>
+        <div class="steps"><span>Backlog</span><span class="on">In progress</span><span>Complete</span></div>
+        <div class="row"><span>Moved to In progress</span><span class="muted">12 Jan</span></div>
+        <div class="row"><span>Added to backlog</span><span class="muted">3 Jan</span></div>
+        <p style="margin:6px 0 0;text-align:center"><span class="badge accent">Track your freight with Shiptivity &rarr; Sign up free</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
